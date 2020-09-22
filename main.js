@@ -16,3 +16,5 @@ function renderMovies(movies) {
     }
     movieTitles.innerHTML = html
 }
+
+
