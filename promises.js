@@ -1,7 +1,7 @@
 const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 // const oMDb = `http://www.omdbapi.com/?apikey=${OMDb}&i=${i}`
 
-
+let i = ["tt0077651", "tt0080761"]
 
 const addMovieFromAPI = i => {
     return i.forEach(movie => {
