@@ -1,32 +1,38 @@
-const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
+    const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 
-fetch(glitchUrl)
-.then(res => res.json())
-.then(movies => renderMovies(movies))
+const films = fetch(glitchUrl)
+        .then(res => res.json())
+        .then(movies => {
+            console.log(movies)
+            renderMovies(movies)
+        })
 
-fetch(OMDb)
-.then(res => res.json())
-.then(console.log)
+    const moviePoster = title => fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDb}`)
+        .then(res => res.json())
+        .then(data => console.log(data.Poster))
 
 
-// edit 
-const editMovies =  movie => fetch(`${glitchUrl}/${movie.id}`, {
-    method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(movie)
-})
-    .then(res => res.json())
-    .then(data => {
-        console.log(`Success: edited ${JSON.stringify(data)}`);
+
+
+    // edit 
+    const editMovies =  movie => fetch(`${glitchUrl}/${movie.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movie)
     })
-    .catch(console.error);
-editMovies({id: 13, title: 'Halloween'})
+        .then(res => res.json())
+        .then(data => {
+            console.log(`Success: edited ${JSON.stringify(data)}`);
+        })
+        .catch(console.error);
+
+
 
 
     // delete
-    const deleteDog = id => fetch(`${glitchUrl}/${id}`, {
+    const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -38,10 +44,9 @@ editMovies({id: 13, title: 'Halloween'})
         })
         .catch(console.error);
 
-        deleteDog(8)
+  
     
     //create
-    
     const addMovie = (movie) => fetch(`${glitchUrl}`, {
         method: 'POST',
         headers: {
@@ -55,3 +60,6 @@ editMovies({id: 13, title: 'Halloween'})
             return data.id; // to access the primary key of the newly created entity
         })
         .catch(console.error);
+
+
+        
