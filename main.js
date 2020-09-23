@@ -1,9 +1,10 @@
 const movieTitles = document.getElementById('movieTitles')
+const moreInfoTab = document.getElementById('more')
 
 
 function renderMovie({title, rating}) {
     return `
-        <h2>${title}<h2>
+        <h3>${title}<h3>
         <p>${rating}</p>
     `
 }
@@ -14,7 +15,7 @@ function renderMovies(movies) {
     for(let movie of movies) {
         html += renderMovie(movie)
     }
-    movieTitles.innerHTML = html
+    moreInfoTab.innerHTML = html
 }
 
 

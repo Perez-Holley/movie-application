@@ -2,12 +2,13 @@ const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 
 fetch(glitchUrl)
 .then(res => res.json())
-.then(movies => renderMovies(movies))
+.then(console.log)
 
-fetch(OMDb)
+const moviePoster = title => fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDb}`)
 .then(res => res.json())
 .then(console.log)
 
+moviePoster('The Thing')
 
 // edit 
 const editMovies =  movie => fetch(`${glitchUrl}/${movie.id}`, {
@@ -22,8 +23,6 @@ const editMovies =  movie => fetch(`${glitchUrl}/${movie.id}`, {
         console.log(`Success: edited ${JSON.stringify(data)}`);
     })
     .catch(console.error);
-editMovies({id: 13, title: 'Halloween'})
-
 
     // delete
     const deleteDog = id => fetch(`${glitchUrl}/${id}`, {
