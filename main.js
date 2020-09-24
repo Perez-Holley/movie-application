@@ -1,6 +1,26 @@
 const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
 
+$(document).ready(function(){
+    $("#addMovieForm").hide()
+});
+
+
+$("#addMovieButton").click(function() {
+    $("#addMovieForm").slideToggle();
+});
+
+
+
+// let newTitle = ""
+// $("#movieFormButton").click(function(){
+//     newTitle = $("#addTitle").val();
+//     console.log(newTitle)
+// });
+
+
+
+
 
 function renderMovie({title, rating}) {
     return `
@@ -63,3 +83,4 @@ function openCity(evt, userForm) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();``
+

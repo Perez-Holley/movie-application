@@ -14,16 +14,37 @@
 <div id="header">
     <div id="headerContentLeft">
         <h2>SCREAM</h2>
-        <p>A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the girl and her friends by using horror films as part of a deadly game.<br>
-        Director: Wes Craven<br>
-        Writer: Kevin Williamson<br>
-        Stars: Neve Campbell, Courteney Cox, David Arquette | See full cast & crew
+        <p>A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the girl and
+            her friends by using horror films as part of a deadly game.<br>
+            Director: Wes Craven<br>
+            Writer: Kevin Williamson<br>
+            Stars: Neve Campbell, Courteney Cox, David Arquette | See full cast & crew
         </p>
     </div>
     <div id="headerContentRight">
-        <iframe width="816" height="415" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="816" height="415" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
     </div>
 </div>
+
+<button id="addMovieButton">Add A Movie</button>
+
+<div id="addMovieForm">
+
+    <div id="addMovieDiv">
+        <form>
+            <label for="addTitle">Title</label>
+            <input type="text" id="addTitle" name="newTitle" placeholder="New Title..">
+
+            <label for="addRating">Rating</label>
+            <input type="text" id="addRating" name="newYear" placeholder="Rating...">
+
+            <button type="button" id="newMovieButton">Submit</button>
+        </form>
+    </div>
+</div>
+
 <hr id="horizontalLine">
 
 <h2>Classics:</h2>
@@ -34,33 +55,35 @@
         <div class="popup">
             <section class="options">
                 <a class="close" href="#">&times;</a>
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'more')" id="defaultOpen">More Info</button>
-                <button class="tablinks" onclick="openCity(event, 'edit')">Edit</button>
-                <button class="tablinks" onclick="openCity(event, 'delete')">Delete</button>
-            </div>
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'more')" id="defaultOpen">More Info</button>
+                    <button class="tablinks" onclick="openCity(event, 'edit')">Edit</button>
+                    <button class="tablinks" onclick="openCity(event, 'delete')">Delete</button>
+                </div>
 
-            <div id="more" class="tabcontent">
-                <h3>HALLOWEEN</h3>
-                <p>Fifteen years after murdering his sister on Halloween night 1963, Michael Myers escapes from a mental hospital and returns to the small town of Haddonfield, Illinois to kill again.<br>
-                    Director: John Carpenter<br>
-                    Writers: John Carpenter (screenplay), Debra Hill (screenplay)<br>
-                    Stars: Donald Pleasence, Jamie Lee Curtis, Tony Moran | See full cast & crew<br></p>
-            </div>
+                <div id="more" class="tabcontent">
+                    <h3>HALLOWEEN</h3>
+                    <p>Fifteen years after murdering his sister on Halloween night 1963, Michael Myers escapes from a
+                        mental hospital and returns to the small town of Haddonfield, Illinois to kill again.<br>
+                        Director: John Carpenter<br>
+                        Writers: John Carpenter (screenplay), Debra Hill (screenplay)<br>
+                        Stars: Donald Pleasence, Jamie Lee Curtis, Tony Moran | See full cast & crew<br></p>
+                </div>
 
-            <div id="edit" class="tabcontent">
-                <h3>Edit:</h3>
-                <label for="movieTitle">Title:</label>
-                <input id="movieTitle" type="text"><br>
+                <div id="edit" class="tabcontent">
+                    <h3>Edit:</h3>
+                    <label for="movieTitle">Title:</label>
+                    <input id="movieTitle" type="text"><br>
 
-                <label for="movieRating">Rating:</label>
-                <input id="movieRating" type="text">
-            </div>
+                    <label for="movieRating">Rating:</label>
+                    <input id="movieRating" type="text">
+                </div>
 
-            <div id="delete" class="tabcontent">
-                <h3>Are you sure you want to delete?</h3>
-                <button>Yes</button><button>No</button>
-            </div>
+                <div id="delete" class="tabcontent">
+                    <h3>Are you sure you want to delete?</h3>
+                    <button>Yes</button>
+                    <button>No</button>
+                </div>
             </section>
         </div>
     </div>
@@ -143,7 +166,8 @@
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="keys.js"></script>
 <script src="promises.js"></script>
 <script src="main.js"></script>
