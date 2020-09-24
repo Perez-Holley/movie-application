@@ -1,44 +1,40 @@
 const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 // const oMDb = `http://www.omdbapi.com/?apikey=${OMDb}&i=${i}`
 
-let i = ["tt0077651", "tt0080761"]
 
-const addMovieFromAPI = (i) => {
-    return i.forEach(movie => {
-        fetch(`http://www.omdbapi.com/?apikey=${OMDb}&i=${movie}`)
-            .then(res => res.json())
-            .then(console.log)
-    })
-}
+
+// const addMovieFromAPI = (i) => {
+//     return i.forEach(movie => {
+//         fetch(`http://www.omdbapi.com/?apikey=${OMDb}&i=${movie}`)
+//             .then(res => res.json())
+//             .then(console.log)
+//     })
+// }
+
 
 
 fetch(glitchUrl)
 .then(res => res.json())
-.then(console.log)
+.then(data => renderPosters(data))
 
 
-// // edit
-// const editMovies =  movie => fetch(`${glitchUrl}/${movie.id}`, {
-//     method: 'PUT',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(movie)
-// })
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(`Success: edited ${JSON.stringify(data)}`);
-//     })
-//     .catch(console.error);
-// // editMovies()
-//
-//
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
+// edit
+const editMovies =  movie => fetch(`${glitchUrl}/61`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie)
+})
+    .then(res => res.json())
+    .then(data => {
+        console.log(`Success: edited ${JSON.stringify(data)}`);
+    })
+    .catch(console.error);
+// editMovies()
+
+
+
 //     // delete
 //     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
 //         method: 'DELETE',
@@ -53,11 +49,7 @@ fetch(glitchUrl)
 //         .catch(console.error);
 //
 //         // deleteMovie()
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     // delete
     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
         method: 'DELETE',
@@ -70,19 +62,12 @@ fetch(glitchUrl)
             console.log(`Success: deleted movie with id of ${id}`);
         })
         .catch(console.error);
+        
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        deleteMovie(37)
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 //
 //     //create
 //
-    const addMovie = (movie) => fetch(`${glitchUrl}`, {
+    const addMovies = (movie) => fetch(`${glitchUrl}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -95,3 +80,8 @@ fetch(glitchUrl)
             return data.id; // to access the primary key of the newly created entity
         })
         .catch(console.error);
+
+    const movies = id => fetch(`http://www.omdbapi.com/?apikey=${OMDb}&i=${id}`)
+            .then(res => res.json())
+            .then(data => addMovies(data))
+
