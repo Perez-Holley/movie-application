@@ -34,8 +34,11 @@ fetch(glitchUrl)
 //
 //
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 //     // delete
 //     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
 //         method: 'DELETE',
@@ -50,6 +53,9 @@ fetch(glitchUrl)
 //         .catch(console.error);
 //
 //         // deleteMovie()
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     // delete
@@ -66,7 +72,10 @@ fetch(glitchUrl)
         .catch(console.error);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         deleteMovie(37)
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes

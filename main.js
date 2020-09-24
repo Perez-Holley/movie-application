@@ -3,11 +3,14 @@ const moreInfoTab = document.getElementById('more')
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 function renderMovie ({title, rating, id}) {
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 function renderMovie({title, rating}) {
 >>>>>>> Stashed changes
     return `
@@ -25,9 +28,15 @@ function populateMovieModal({title, rating, id}) {
 }
 
 function renderPoster() {
+<<<<<<< Updated upstream
 
 }
 
+=======
+
+}
+
+>>>>>>> Stashed changes
 
 function renderPosters(movies) {
     let html = ''
