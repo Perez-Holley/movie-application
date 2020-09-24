@@ -2,48 +2,41 @@ const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
 
 
-function renderMovie({title, rating}) {
-    return `
-        <h3>${title}<h3>
-        <p>${rating}</p>
+
+function populateMovieModal({Title, Rating, Rated, Year, Genre, Plot, Director, Writer, id }) {
+    let movieInfo =  `
+        <h3 id="movieName">${Title}<span id="year">${Year}</span></h3>
+        <p id="plot">${Plot}</p>
+        <p id="directors">${Director}</p>
+        <p id="writers">${Writer}</p>
+        <p id="rated">${Rated}</p>
+        <p id="genre">${Genre}</p>
     `
+    document.querySelector("movieId").value = id
+    document.querySelector("#movieTitle").value = Title
+    document.querySelector('#movieRating').value = Rating[1].Value
+    document.querySelector("#more").innerText = movieInfo
+    document.querySelector('#deleteBtn').setAttribute("data-id", id) 
+
+}
+
+function renderPoster({Poster, id}) {
+    return `<div><a type="button" href="#${id}"><img id="movie1" src=${Poster}></a></div>`
 }
 
 
-function renderMovies(movies) {
+
+
+
+function renderPosters(movies) {
+    const {id} = movies
     let html = ''
     for(let movie of movies) {
-        html += renderMovie(movie)
+        html += renderPoster(movie)
     }
-    moreInfoTab.innerHTML = html
+    document.getElementById('all').innerHTML = html
 }
 
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var movie1 = document.getElementById("movie1");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-movie1.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
 
 
@@ -62,4 +55,19 @@ function openCity(evt, userForm) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();``
+document.getElementById("defaultOpen").click();
+
+const deleteBtn = document.querySelectorAll('.delete')
+
+deleteBtn.forEach(btn => {
+    this.addEventListener('click', () => console.log('Hey'))
+})
+
+// document.querySelectorAll('.movieLink').forEach(poster => {
+//     this.addEventListener('click', () => {
+//         const overlay = document.querySelectorAll('.popup')
+//         overlay.forEach(popup => {
+//            return  popup.style.visibility = 'visible'
+//     })
+//     }) 
+// })
