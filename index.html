@@ -37,11 +37,11 @@
             <div class="tab">
                 <button class="tablinks" onclick="openCity(event, 'more')" id="defaultOpen">More Info</button>
                 <button class="tablinks" onclick="openCity(event, 'edit')">Edit</button>
-                <button class="tablinks" onclick="openCity(event, 'delete')">Delete</button>
+                <button class="tablinks delete" onclick="openCity(event, 'delete')">Delete</button>
             </div>
 
             <div id="more" class="tabcontent">
-                <h3>HALLOWEEN</h3>
+                <h3><span id="movieName">HALLOWEEN</span></h3>
                 <p>Fifteen years after murdering his sister on Halloween night 1963, Michael Myers escapes from a mental hospital and returns to the small town of Haddonfield, Illinois to kill again.<br>
                     Director: John Carpenter<br>
                     Writers: John Carpenter (screenplay), Debra Hill (screenplay)<br>
@@ -49,12 +49,14 @@
             </div>
 
             <div id="edit" class="tabcontent">
+                <input type="hidden" id="movieId" >
                 <h3>Edit:</h3>
                 <label for="movieTitle">Title:</label>
-                <input id="movieTitle" type="text"><br>
+                <input id="movieTitle" value="Halloween" type="text"><br>
 
                 <label for="movieRating">Rating:</label>
-                <input id="movieRating" type="text">
+                <input id="movieRating" value="1.5" type="text">
+                <button>Edit Movie</button>
             </div>
 
             <div id="delete" class="tabcontent">

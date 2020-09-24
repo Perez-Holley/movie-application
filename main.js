@@ -2,20 +2,37 @@ const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
 
 
+<<<<<<< Updated upstream
 
 
 function renderMovie ({title, rating, id}) {
+=======
+<<<<<<< Updated upstream
+function renderMovie({title, rating}) {
+>>>>>>> Stashed changes
     return `
+=======
+
+
+function populateMovieModal({title, rating, id}) {
+    let movieInfo =  `
+>>>>>>> Stashed changes
         <h3>${title}<h3>
         <p>${rating}</p>
     `
+    document.querySelector("movieId").value = id
+    document.querySelector("#more").innerText = movieInfo
+}
+
+function renderPoster() {
+
 }
 
 
-function renderMovies(movies) {
+function renderPosters(movies) {
     let html = ''
     for(let movie of movies) {
-        html += renderMovie(movie)
+        html += renderPoster(movie)
     }
     moreInfoTab.innerHTML = html
 }
@@ -64,4 +81,10 @@ function openCity(evt, userForm) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();``
+document.getElementById("defaultOpen").click();
+
+const deleteBtn = document.querySelectorAll('.delete')
+
+deleteBtn.forEach(btn => {
+    this.addEventListener('click', () => console.log('Hey'))
+})
