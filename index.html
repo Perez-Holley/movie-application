@@ -7,61 +7,147 @@
 
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.0/css/halfmoon-variables.min.css" rel="stylesheet" />
 </head>
 <body>
-<!--    <h1>Movies Project</h1>-->
-<!--    <div id="movieTitles"></div>-->
-<div id="header">
-    <div id="headerContentLeft">
-        <h2>SCREAM</h2>
-        <p>A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the girl and her friends by using horror films as part of a deadly game.<br>
-        Director: Wes Craven<br>
-        Writer: Kevin Williamson<br>
-        Stars: Neve Campbell, Courteney Cox, David Arquette | See full cast & crew
-        </p>
-    </div>
-    <div id="headerContentRight">
-        <iframe width="816" height="415" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
-<hr id="horizontalLine">
-
-<h2>All Movies:</h2>
-<div class="rows" id="all">
-    <div id="popup1 pop">
-        <div class="popup">
-            <section class="options">
-                <a class="close" href="#">&times;</a>
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'more')" id="defaultOpen">More Info</button>
-                <button class="tablinks" onclick="openCity(event, 'edit')">Edit</button>
-                <button class="tablinks delete" onclick="openCity(event, 'delete')">Delete</button>
-            </div>
-
-            <div id="more" class="tabcontent">
+    <!-- First comes the modal -->
+<div class="modal" id="modal-1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <a href="#" class="close" role="button" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+            <div id="popup1">
                 
-            </div>
+                    <section class="options">
+                        <a class="close" href="#">&times;</a>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'more')" id="defaultOpen">More Info</button>
+                        <button class="tablinks" onclick="openCity(event, 'edit')">Edit</button>
+                        <button class="tablinks delete" onclick="openCity(event, 'delete')">Delete</button>
+                    </div>
+            
+                    <div id="more" class="tabcontent"></div>
+            
+                    <div id="edit" class="tabcontent">
+                        <!-- <input type="hidden" id="movieId" >
+                        <h3>Edit:</h3>
+                        <label for="movieTitle">Title:</label>
+                        <input id="movieTitle" value="Halloween" type="text"><br>
+            
+                        <label for="movieRating">Rating:</label>
+                        <input id="movieRating" value="1.5" type="text">
+                        <button id='editMovie' class="btn">Edit Movie</button> -->
+                        <div class="form-group">
+                            <label for="editTitle" class="required">Title</label>
+                            <input id="editTitle" type="text" name="title" class="form-control" placeholder="Add New Title" required="required">
+                          </div>
+                          <div class="form-group">
+                            <label for="editRating" class="required">Rating</label>
+                            <input id="editRating" type="text" name="rating" class="form-control" placeholder="Add Rating" required="required">
+                          </div>
+                          <input id="editButton" class="btn" type="submit" value="Edit Movie">
+                      </div>
+                    </div>
+            
+                    <div id="delete" class="tabcontent">
+                        <p class="text-center">Are you sure you want to delete?</p>
+                        <div class="text-center">
+                        <button id="deleteMovie " class="btn">Yes</button><button class="btn">No</button>
+                        </div>
+                    </div>
+                    </section>
+                </div>
+        <div class="text-right mt-20"> <!-- text-right = text-align: right, mt-20 = margin-top: 2rem (20px) -->
+          <a href="#" class="btn mr-5" role="button">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <div id="edit" class="tabcontent">
-                <input type="hidden" id="movieId" >
-                <h3>Edit:</h3>
-                <label for="movieTitle">Title:</label>
-                <input id="movieTitle" value="Halloween" type="text"><br>
+    <div class="page-wrapper with-navbar with-navbar-fixed-bottom" data-sidebar-type="overlayed-sm-and-down">
+        <!-- Sticky alerts (toasts), empty container -->
+        <div class="sticky-alerts"></div>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <nav class="navbar">
+                <!-- Navbar content (with toggle sidebar button) -->
+                <div class="navbar-content">
+                  <button class="btn btn-action" type="button">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle sidebar</span> <!-- sr-only = show only on screen readers -->
+                  </button>
+                </div>
+                <!-- Navbar brand -->
+                <a href="#" class="navbar-brand mr-auto">
+                  Horror Movies
+                </a>
 
-                <label for="movieRating">Rating:</label>
-                <input id="movieRating" value="1.5" type="text">
-                <button>Edit Movie</button>
+                <!-- dropdown add (inline form) -->
+                <div class="dropdown">
+                    <button class="btn btn-primary" data-toggle="dropdown" type="button" id="sign-in-dropdown-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                      Add Movie <i class="fa fa-angle-down ml-5" aria-hidden="true"></i> <!-- ml-5 = margin-left: 0.5rem (5px) -->
+                    </button>
+                    <div class="dropdown-menu w-250 w-sm-350" aria-labelledby="sign-in-dropdown-toggle-btn"> <!-- w-250 = width: 25rem (250px), w-sm-350 = width: 35rem (350px) only on devices where width > 576px -->
+                      <div class="dropdown-content p-20"> <!-- p-20 = padding: 2rem (20px) -->
+                          <div class="form-group">
+                            <label for="addTitle" class="required">Title</label>
+                            <input id="addTitle" type="text" name="title" class="form-control" placeholder="Add New Title" required="required">
+                          </div>
+                          <div class="form-group">
+                            <label for="addRating" class="required">Rating</label>
+                            <input id="addRating" type="text" name="rating" class="form-control" placeholder="Add Rating" required="required">
+                          </div>
+                          <input id="addButton" class="btn btn-primary btn-block" type="submit" value="Add New Movie">
+                      </div>
+            
+                  </div>
+              </nav>
+        </nav>
+    
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+            <div id="container">
+                <div id="headerContentLeft">
+                    <h2>SCREAM</h2>
+                    <p>A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the girl and her friends by using horror films as part of a deadly game.<br>
+                    Director: Wes Craven<br>
+                    Writer: Kevin Williamson<br>
+                    Stars: Neve Campbell, Courteney Cox, David Arquette | See full cast & crew
+                    </p>
+                </div>
+                <div id="headerContentRight">
+                    <iframe width="816" height="415" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
+            <!-- <button id="addMovieButton">Add A Movie</button>
+            <div id="addMovieForm">
+                <div id="formDiv">
+                    <form>
+                        <label for="addTitle">Title</label>
+                        <input type="text" id="addTitle" name="newTitle" placeholder="New Title..">
+                        <label for="addRating">Rating</label>
+                        <input type="text" id="addRating" name="newYear" placeholder="Rating..">
+                        <button type="button" id="movieFormButton">Submit</button>
+                    </form>
+                </div>
+            </div> -->
+            
+            <hr id="horizontalLine">
+            
+            <h2>All Movies:</h2>
 
-            <div id="delete" class="tabcontent">
-                <h3>Are you sure you want to delete?</h3>
-                <button id="deleteBtn">Yes</button><button>No</button>
-            </div>
-            </section>
+            <!-- Movie Posters -->
+            <div class="rows" id="all"></div>
         </div>
     </div>
 
-    <!-- <div><img src="halloween.jpeg"></div>
+  <!-- Requires halfmoon.js for toggling sidebar, and toasts -->
+  
+
+
+
+<!-- <div><img src="halloween.jpeg"></div>
     <div><img src="halloween.jpeg"></div>
     <div><img src="halloween.jpeg"></div>
     <div><img src="halloween.jpeg"></div>
@@ -70,8 +156,6 @@
     <div><img src="halloween.jpeg"></div>
     <div><img src="halloween.jpeg"></div>
     <div><img src="halloween.jpeg"></div> -->
-</div>
-
 <!-- <h2>Mega Monster:</h2>
 <div class="rows">
     <div><img src="jaws.jpg"></div>
@@ -137,8 +221,10 @@
     <div><img src="jaws.jpg"></div>
     <div><img src="jaws.jpg"></div>
 </div> -->
-
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.0/js/halfmoon.min.js"></script>
+  <!-- <script src="path/to/halfmoon.js"></script> -->
 
 <script src="keys.js"></script>
 <script src="promises.js"></script>
