@@ -82,6 +82,7 @@ input[type=text], select {
 img {
     flex: 0 0 auto;
     margin: 2em 4em;
+    width: 20rem;
 }
 
 

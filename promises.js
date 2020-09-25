@@ -22,19 +22,19 @@ fetch(glitchUrl)
 
 
 // edit
-const editMovies =  movie => fetch(`${glitchUrl}/${movie}`, {
+const editMovies = movies => fetch(`${glitchUrl}/${movies.id}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(movie)
+    body: JSON.stringify(movies)
 })
     .then(res => res.json())
     .then(data => {
         console.log(`Success: edited ${JSON.stringify(data)}`);
     })
     .catch(console.error);
-// editMovies()
+// editMovies({id : 97, Title : "Scarier", Rating : 2})
 
 
 
