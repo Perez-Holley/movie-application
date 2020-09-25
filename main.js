@@ -1,44 +1,53 @@
 const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
+let deleteBtn = document.getElementById('deleteBtn')
 
 
 
-function populateMovieModal({Title, Rating, Rated, Year, Genre, Plot, Director, Writer, id }) {
-    let movieInfo =  `
-        <h3 id="movieName">${Title}<span id="year">${Year}</span></h3>
-        <p id="plot">${Plot}</p>
-        <p id="directors">${Director}</p>
-        <p id="writers">${Writer}</p>
-        <p id="rated">${Rated}</p>
-        <p id="genre">${Genre}</p>
-    `
-    document.querySelector("movieId").value = id
-    document.querySelector("#movieTitle").value = Title
-    document.querySelector('#movieRating').value = Rating[1].Value
-    document.querySelector("#more").innerText = movieInfo
-    document.querySelector('#deleteBtn').setAttribute("data-id", id) 
 
+
+function renderPoster({Poster}) {
+    return `<div><a class="poster" type="button" href="#modal-1"><img src=${Poster}></a></div>`
 }
-
-function renderPoster({Poster, id}) {
-    return `<div><a type="button" href="#${id}"><img id="movie1" src=${Poster}></a></div>`
-}
-
-
-
 
 
 function renderPosters(movies) {
-    const {id} = movies
     let html = ''
     for(let movie of movies) {
         html += renderPoster(movie)
     }
     document.getElementById('all').innerHTML = html
+    document.querySelectorAll('.poster').forEach((poster, key) => {
+        poster.addEventListener('click', () => {
+            populateMovieModal(movies[key])
+        })
+    })
 }
 
 
+function populateMovieModal({Title, Rating, Rated, Year, Genre, Plot, Director, Writer, id }) {
+        let movieInfo =  `
+            <h4 class="m-0">${Title}</h4><span id="year" class="ml-1">${Year}</span>
+            <p>${Plot}</p>
+            <p>${Director}</p>
+            <p>${Writer}</p>
+            <p>${Rated}</p>
+            <p>${Genre}</p>
+        `
 
+        document.querySelector("#more").innerHTML = movieInfo
+        // document.querySelector("movieId").value = id
+        // document.querySelector("#movieTitle").value = Title
+        // document.querySelector('#movieRating').value = Rating[1].Value
+        deleteBtn.setAttribute("data-id", `${id}`)
+}
+
+
+deleteBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        deleteMovie()
+    })
+})
 
 function openCity(evt, userForm) {
     var i, tabcontent, tablinks;
@@ -55,19 +64,21 @@ function openCity(evt, userForm) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+// document.getElementById("defaultOpen").click();
 
-const deleteBtn = document.querySelectorAll('.delete')
 
-deleteBtn.forEach(btn => {
-    this.addEventListener('click', () => console.log('Hey'))
+
+
+$(document).ready(function(){
+    $("#addMovieForm").hide();
+});
+$("#addMovieButton").click(function() {
+    $("#addMovieForm").slideToggle();
+});
+
+$("#addButton").click(function() {
+    const newTitle = $("#addTitle").val();
+    const newRating = $('#addRating').val()
+    // let newRating = $("#addRating").val()
+   addMovie({Title: newTitle, Rating: newRating, Poster: 'img/image.png'} )
 })
-
-// document.querySelectorAll('.movieLink').forEach(poster => {
-//     this.addEventListener('click', () => {
-//         const overlay = document.querySelectorAll('.popup')
-//         overlay.forEach(popup => {
-//            return  popup.style.visibility = 'visible'
-//     })
-//     }) 
-// })
