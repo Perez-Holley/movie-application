@@ -1,19 +1,16 @@
 const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
-let deleteBtn = document.getElementById('deleteBtn')
+let deleteBtn = document.getElementById('deleteMovie')
+let editBtn = document.getElementById('editButton')
 
-
-
-
-
-function renderPoster({Poster}) {
-    return `<div><a class="poster" type="button" href="#modal-1"><img src=${Poster}></a></div>`
+function renderPoster({Poster, id}) {
+    return `<div><a data-id=${id} class="poster" type="button" href="#modal-1"><img src=${Poster}></a></div>`
 }
 
 
 function renderPosters(movies) {
     let html = ''
-    for(let movie of movies) {
+    for (let movie of movies) {
         html += renderPoster(movie)
     }
     document.getElementById('all').innerHTML = html
@@ -25,31 +22,49 @@ function renderPosters(movies) {
 }
 
 
-function populateMovieModal({Title, Rating, Rated, Year, Genre, Plot, Director, Writer, id }) {
-        let movieInfo =  `
+function populateMovieModal({Title, Ratings, Rated, Year, Genre, Plot, Director, Writer, id}) {
+    let movieInfo = `
             <h4 class="m-0">${Title}</h4><span id="year" class="ml-1">${Year}</span>
             <p>${Plot}</p>
-            <p>${Director}</p>
-            <p>${Writer}</p>
+            <p>Director: ${Director}</p>
+            <p>Writer: ${Writer}</p>
             <p>${Rated}</p>
             <p>${Genre}</p>
+            <p>Rating: ${Ratings[1].Value}</p>
         `
 
-        document.querySelector("#more").innerHTML = movieInfo
-        // document.querySelector("movieId").value = id
-        // document.querySelector("#movieTitle").value = Title
-        // document.querySelector('#movieRating').value = Rating[1].Value
-        deleteBtn.setAttribute("data-id", `${id}`)
+
+    document.querySelector("#more").innerHTML = movieInfo
+
+    // document.querySelector("movieId").value = id
+    // document.querySelector("#movieTitle").value = Title
+    // document.querySelector('#movieRating').value = Ratings[1].Value
+    deleteBtn.setAttribute("data-id", id)
+    editBtn.setAttribute("data-id", id)
 }
 
 
-deleteBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-        deleteMovie()
-    })
+$("#deleteMovie").click(function () {
+    let btnID = this.getAttribute("data-id")
+    console.log(btnID)
+    deleteMovie(btnID)
+    alert("Movie Deleted")
+    window.location.reload(true)
 })
 
-function openCity(evt, userForm) {
+$("#editButton").click(function () {
+    let btnID = this.getAttribute("data-id")
+    let posterData = $('.poster').find("[data-id=btnID]")
+    console.log(posterData);
+    // let newTitle = $("#editTitle").val()
+    // let newRating = $("#editRating").val()
+    // console.log(btnID)
+    // editMovies({id: btnID, Title: newTitle, Rating : newRating, Poster : posterData})
+})
+
+
+
+function openTab(evt, userForm) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -64,21 +79,18 @@ function openCity(evt, userForm) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-// document.getElementById("defaultOpen").click();
+document.getElementById("defaultOpen").click();
 
 
-
-
-$(document).ready(function(){
+$(document).ready(function () {
     $("#addMovieForm").hide();
 });
-$("#addMovieButton").click(function() {
+$("#addMovieButton").click(function () {
     $("#addMovieForm").slideToggle();
 });
 
-$("#addButton").click(function() {
-    const newTitle = $("#addTitle").val();
+$("#addButton").click(function () {
+    const newTitle = $("#addTitle").val()
     const newRating = $('#addRating').val()
-    // let newRating = $("#addRating").val()
-   addMovie({Title: newTitle, Rating: newRating, Poster: 'img/image.png'} )
+    addMovie({Title: newTitle, Ratings : newRating, Poster: 'img/image.png'})
 })
