@@ -15,11 +15,14 @@ const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 
 fetch(glitchUrl)
 .then(res => res.json())
-.then(data => renderPosters(data))
+.then(data => {
+    renderPosters(data)
+    console.log(data)
+})
 
 
 // edit
-const editMovies =  movie => fetch(`${glitchUrl}/61`, {
+const editMovies =  movie => fetch(`${glitchUrl}/${movie}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
@@ -67,7 +70,7 @@ const editMovies =  movie => fetch(`${glitchUrl}/61`, {
 //
 //     //create
 //
-    const addMovies = (movie) => fetch(`${glitchUrl}`, {
+    const addMovie = (movie) => fetch(`${glitchUrl}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -81,7 +84,5 @@ const editMovies =  movie => fetch(`${glitchUrl}/61`, {
         })
         .catch(console.error);
 
-    const movies = id => fetch(`http://www.omdbapi.com/?apikey=${OMDb}&i=${id}`)
-            .then(res => res.json())
-            .then(data => addMovies(data))
+
 
