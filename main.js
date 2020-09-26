@@ -4,7 +4,7 @@ let deleteBtn = document.getElementById('deleteMovie')
 let editBtn = document.getElementById('editButton')
 
 function renderPoster({Poster, id}) {
-    return `<div><a data-id=${id} class="poster" type="button" href="#modal-1"><img src=${Poster}></a></div>`
+    return `<div><a class="poster" type="button" href="#modal-1"><img data-id=${id} src=${Poster}></a></div>`
 }
 
 
@@ -30,7 +30,6 @@ function populateMovieModal({Title, Ratings, Rated, Year, Genre, Plot, Director,
             <p>Writer: ${Writer}</p>
             <p>${Rated}</p>
             <p>${Genre}</p>
-            <p>Rating: ${Ratings[1].Value}</p>
         `
 
 
@@ -54,12 +53,12 @@ $("#deleteMovie").click(function () {
 
 $("#editButton").click(function () {
     let btnID = this.getAttribute("data-id")
-    let posterData = $('.poster').find("[data-id=btnID]")
-    console.log(posterData);
-    // let newTitle = $("#editTitle").val()
-    // let newRating = $("#editRating").val()
-    // console.log(btnID)
-    // editMovies({id: btnID, Title: newTitle, Rating : newRating, Poster : posterData})
+    let posterData = $('img[data-id='+btnID+']')
+    let posterSrc = posterData[0].currentSrc
+    console.log(posterSrc)
+    let newTitle = $("#editTitle").val()
+    let newRating = $("#editRating").val()
+    editMovies({id: btnID, Title: newTitle, Rating : newRating, Poster : posterSrc})
 })
 
 
