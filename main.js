@@ -22,7 +22,7 @@ function renderPosters(movies) {
 }
 
 
-function populateMovieModal({Title, Ratings, Rated, Year, Genre, Plot, Director, Writer, id}) {
+function populateMovieModal({Title, imdbRating, Rated, Year, Genre, Plot, Director, Writer, id}) {
     let movieInfo = `
             <h4 class="m-0">${Title}</h4><span id="year" class="ml-1">${Year}</span>
             <p>${Plot}</p>
@@ -30,14 +30,22 @@ function populateMovieModal({Title, Ratings, Rated, Year, Genre, Plot, Director,
             <p>Writer: ${Writer}</p>
             <p>${Rated}</p>
             <p>${Genre}</p>
+            <p>Rating: ${imdbRating} out of 10</p>
         `
+    let newMovieInfo = `
+            <h4 class="m-0">${Title}</h4>
+            <p>Rating: ${imdbRating} out of 10</p>
+    `
 
-
-    document.querySelector("#more").innerHTML = movieInfo
+    if (`${id}` <= 91) {
+        document.querySelector("#more").innerHTML = movieInfo
+    } else if (`${id}` > 91) {
+        document.querySelector("#more").innerHTML = newMovieInfo
+    }
 
     // document.querySelector("movieId").value = id
     // document.querySelector("#movieTitle").value = Title
-    // document.querySelector('#movieRating').value = Ratings[1].Value
+    // document.querySelector('#addRating').value = Ratings[1].Value
     deleteBtn.setAttribute("data-id", id)
     editBtn.setAttribute("data-id", id)
 }
@@ -57,8 +65,8 @@ $("#editButton").click(function () {
     let posterSrc = posterData[0].currentSrc
     console.log(posterSrc)
     let newTitle = $("#editTitle").val()
-    let newRating = $("#editRating").val()
-    editMovies({id: btnID, Title: newTitle, Rating : newRating, Poster : posterSrc})
+    let imdbRating = $("#editRating").val()
+    editMovies({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc})
 })
 
 
@@ -90,6 +98,6 @@ $("#addMovieButton").click(function () {
 
 $("#addButton").click(function () {
     const newTitle = $("#addTitle").val()
-    const newRating = $('#addRating').val()
-    addMovie({Title: newTitle, Ratings : newRating, Poster: 'img/image.png'})
+    const imdbRating = $('#addRating').val()
+    addMovie({Title: newTitle, imdbRating : imdbRating, Poster: 'img/image.png'})
 })
