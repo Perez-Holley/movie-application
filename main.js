@@ -3,10 +3,21 @@ const moreInfoTab = document.getElementById('more')
 let deleteBtn = document.getElementById('deleteMovie')
 let editBtn = document.getElementById('editButton')
 
+$(window).load(function() {
+    $('#loading').hide();
+});
+
+$(document).ready(function () {
+    $("#addMovieForm").hide();
+});
+
+$("#addMovieButton").click(function () {
+    $("#addMovieForm").slideToggle();
+});
+
 function renderPoster({Poster, id}) {
     return `<div><a class="poster" type="button" href="#modal-1"><img data-id=${id} src=${Poster}></a></div>`
 }
-
 
 function renderPosters(movies) {
     let html = ''
@@ -53,10 +64,10 @@ function populateMovieModal({Title, imdbRating, Rated, Year, Genre, Plot, Direct
 
 $("#deleteMovie").click(function () {
     let btnID = this.getAttribute("data-id")
+    let posterData = $('img[data-id='+btnID+']')
+    posterData.hide()
     console.log(btnID)
     deleteMovie(btnID)
-    alert("Movie Deleted")
-    window.location.reload(true)
 })
 
 $("#editButton").click(function () {
@@ -67,6 +78,14 @@ $("#editButton").click(function () {
     let newTitle = $("#editTitle").val()
     let imdbRating = $("#editRating").val()
     editMovies({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc})
+    populateMovieModal({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc})
+})
+
+$(".closeBtn").click(function () {
+    let newTitle = $("#editTitle").val("")
+    let imdbRating = $("#editRating").val("")
+    newTitle.attr("placeholder", "Enter New Title")
+    imdbRating.attr("placeholder", "Rate Movie 1-10")
 })
 
 
@@ -88,13 +107,6 @@ function openTab(evt, userForm) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-
-$(document).ready(function () {
-    $("#addMovieForm").hide();
-});
-$("#addMovieButton").click(function () {
-    $("#addMovieForm").slideToggle();
-});
 
 $("#addButton").click(function () {
     const newTitle = $("#addTitle").val()
