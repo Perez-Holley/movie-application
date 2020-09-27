@@ -37,22 +37,6 @@ const editMovies = movies => fetch(`${glitchUrl}/${movies.id}`, {
 // editMovies({id : 97, Title : "Scarier", Rating : 2})
 
 
-
-//     // delete
-//     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
-//         method: 'DELETE',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then(res => res.json())
-//         .then(() => {
-//             console.log(`Success: deleted movie with id of ${id}`);
-//         })
-//         .catch(console.error);
-//
-//         // deleteMovie()
-
     // delete
     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
         method: 'DELETE',

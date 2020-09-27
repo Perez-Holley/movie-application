@@ -10,17 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.0/css/halfmoon-variables.min.css" rel="stylesheet"/>
 </head>
 <body>
-<!-- First comes the modal -->
+<!--------------LOADING IMAGE---------------->
+<div id="loading"></div>
+
+<!------------- MODAL ---------------->
 <div class="modal" id="modal-1" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <a href="#" class="close closeBtn" role="button" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </a>
-            <div id="popup1">
-
+            <div>
                 <section class="options">
-                    <a class="close" href="#">&times;</a>
                     <div class="tab">
                         <button class="tablinks" onclick="openTab(event, 'more')" id="defaultOpen">More Info</button>
                         <button class="tablinks" onclick="openTab(event, 'edit')">Edit</button>
@@ -60,27 +58,29 @@
     </div>
 </div>
 
-<div class="page-wrapper with-navbar with-navbar-fixed-bottom" data-sidebar-type="overlayed-sm-and-down">
-    <!-- Sticky alerts (toasts), empty container -->
-    <div class="sticky-alerts"></div>
+<!----------------------NAVBAR----------------------------->
+
+<div class="page-wrapper with-navbar" data-sidebar-type="overlayed-sm-and-down">
     <!-- Navbar -->
-    <nav class="navbar">
-        <nav class="navbar">
+    <nav class="navbar d-flex p-0 m-0">
+        <nav id="navBar" class="navbar d-flex p-0 m-0">
             <!-- Navbar content (with toggle sidebar button) -->
-            <div class="navbar-content">
+            <div class="navbar-content ml-20">
                 <button class="btn btn-action" type="button">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                     <span class="sr-only">Toggle sidebar</span> <!-- sr-only = show only on screen readers -->
                 </button>
             </div>
             <!-- Navbar brand -->
-            <a href="#" class="navbar-brand mr-auto">
+            <a href="#" class="navbar-brand text-white">
                 Horror Movies
             </a>
 
+            <img id="navLogo" class="my-0 mx-auto" src="img/navLogo1.png">
+
             <!-- dropdown add (inline form) -->
-            <div class="dropdown">
-                <button class="btn btn-primary" data-toggle="dropdown" type="button" id="sign-in-dropdown-toggle-btn"
+            <div class="dropdown ml-auto mr-20">
+                <button class="btn" data-toggle="dropdown" type="button" id="sign-in-dropdown-toggle-btn"
                         aria-haspopup="true" aria-expanded="false">
                     Add Movie <i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
                     <!-- ml-5 = margin-left: 0.5rem (5px) -->
@@ -107,43 +107,32 @@
     </nav>
 
 
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
-        <div id="container">
-            <div id="headerContentLeft">
-                <h2>SCREAM</h2>
-                <p>A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the
-                    girl and her friends by using horror films as part of a deadly game.<br>
-                    Director: Wes Craven<br>
-                    Writer: Kevin Williamson<br>
+<!--------------- Content wrapper -------------------->
+    <div id="featMovieDiv" class="content-wrapper">
+        <div id="container" class="d-flex">
+            <div id="headerContentLeft" class="col-md-6 m-auto">
+                <div id="innerLeftContent" class="container w-500 h-400 bg-dark text-white p-20 border rounded">
+                <h5 class="d-flex justify-content-center text-white">Featured Movie</h5>
+                <h1 class="d-flex justify-content-center">SCREAM</h1>
+                <p class="mr-50">A year after the murder of her mother, a teenage girl is terrorized by a new killer, who targets the
+                    girl and her friends by using horror films as part of a deadly game.<br><br>
+                    Director: Wes Craven<br><br>
+                    Writer: Kevin Williamson<br><br>
                     Stars: Neve Campbell, Courteney Cox, David Arquette | See full cast & crew
                 </p>
+                </div>
             </div>
-            <div id="headerContentRight">
-                <iframe width="816" height="415" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1"
+            <div id="headerContentRight" class="col-md-6">
+                <iframe id="youtubeVid" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
             </div>
         </div>
-        <!-- <button id="addMovieButton">Add A Movie</button>
-        <div id="addMovieForm">
-            <div id="formDiv">
-                <form>
-                    <label for="addTitle">Title</label>
-                    <input type="text" id="addTitle" name="newTitle" placeholder="New Title..">
-                    <label for="addRating">Rating</label>
-                    <input type="text" id="addRating" name="newYear" placeholder="Rating..">
-                    <button type="button" id="movieFormButton">Submit</button>
-                </form>
-            </div>
-        </div> -->
 
-        <hr id="horizontalLine">
-
-        <h2>All Movies:</h2>
 
         <!-- Movie Posters -->
+        <h2 class="mb-0">Movies:</h2>
         <div class="rows" id="all"></div>
     </div>
 </div>
@@ -151,80 +140,6 @@
 <!-- Requires halfmoon.js for toggling sidebar, and toasts -->
 
 
-<!-- <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div>
-    <div><img src="halloween.jpeg"></div> -->
-<!-- <h2>Mega Monster:</h2>
-<div class="rows">
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-</div> -->
-
-<!-- <div class="rows">
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-</div>
-
-<div class="rows">
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-</div>
-
-<div class="rows">
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-</div>
-
-<div class="rows">
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-    <div><img src="jaws.jpg"></div>
-</div> -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.0/js/halfmoon.min.js"></script>
