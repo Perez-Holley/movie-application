@@ -17,6 +17,7 @@ fetch(glitchUrl)
 .then(res => res.json())
 .then(data => {
     renderPosters(data)
+    $('#loading').hide()
     console.log(data)
 })
 
