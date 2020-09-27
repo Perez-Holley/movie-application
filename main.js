@@ -3,10 +3,6 @@ const moreInfoTab = document.getElementById('more')
 let deleteBtn = document.getElementById('deleteMovie')
 let editBtn = document.getElementById('editButton')
 
-$(window).load(function() {
-    $('#loading').hide();
-});
-
 $(document).ready(function () {
     $("#addMovieForm").hide();
 });
