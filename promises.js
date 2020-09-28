@@ -10,7 +10,7 @@ const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 //             .then(console.log)
 //     })
 // }
-
+const spinner = document.getElementById('loading')
 
 
 fetch(glitchUrl)
@@ -18,9 +18,10 @@ fetch(glitchUrl)
     .then(data => {
         renderPosters(data)
         populateMovieModal(data)
-        $('#loading').hide();
         console.log(data)
+        spinner.classList.add("invisible");
     })
+
 
 
 // edit
