@@ -1,22 +1,22 @@
+
 const movieTitles = document.getElementById('movieTitles')
 const moreInfoTab = document.getElementById('more')
-let deleteBtn = document.getElementById('deleteMovie')
-let editBtn = document.getElementById('editButton')
+const deleteBtn = document.getElementById('deleteMovie')
+const editBtn = document.getElementById('editButton')
+const editTitle = document.getElementById('editTitle')
+const editYear = document.getElementById('editYear')
+const editRating = document.getElementById('editRating')
+const editGenre = document.getElementById('editGenre')
 
-$(window).load(function() {
-    $('#loading').hide();
-});
 
-$(document).ready(function () {
-    $("#addMovieForm").hide();
-});
-
-$("#addMovieButton").click(function () {
-    $("#addMovieForm").slideToggle();
-});
 
 function renderPoster({Poster, id}) {
-    return `<div><a class="poster" type="button" href="#modal-1"><img data-id=${id} src=${Poster}></a></div>`
+    return `
+        <div>
+            <a class="poster" type="button" href="#modal-1">
+                <img data-id=${id} src=${Poster}>
+            </a>
+        </div>`
 }
 
 function renderPosters(movies) {
@@ -33,19 +33,16 @@ function renderPosters(movies) {
 }
 
 
-function populateMovieModal({Title, imdbRating, Rated, Year, Genre, Plot, Director, Writer, id}) {
+function populateMovieModal({Title, imdbRating, Year, Genre, id}) {
     let movieInfo = `
             <h4 class="m-0">${Title}</h4><span id="year" class="ml-1">${Year}</span>
-            <p>${Plot}</p>
-            <p>Director: ${Director}</p>
-            <p>Writer: ${Writer}</p>
-            <p>${Rated}</p>
             <p>${Genre}</p>
             <p>Rating: ${imdbRating} out of 10</p>
         `
     let newMovieInfo = `
-            <h4 class="m-0">${Title}</h4>
-            <p>Rating: ${imdbRating} out of 10</p>
+        <h4 class="m-0">${Title}</h4><span id="year" class="ml-1">${Year}</span>
+        <p>${Genre}</p>
+        <p>Rating: ${imdbRating} out of 10</p>
     `
 
     if (`${id}` <= 91) {
@@ -53,51 +50,21 @@ function populateMovieModal({Title, imdbRating, Rated, Year, Genre, Plot, Direct
     } else if (`${id}` > 91) {
         document.querySelector("#more").innerHTML = newMovieInfo
     }
-
-    // document.querySelector("movieId").value = id
-    // document.querySelector("#movieTitle").value = Title
-    // document.querySelector('#addRating').value = Ratings[1].Value
+    editTitle.setAttribute("placeholder", Title)
+    editYear.setAttribute("placeholder", Year)
+    editGenre.setAttribute("placeholder", Genre)
+    editRating.setAttribute("placeholder", imdbRating)
     deleteBtn.setAttribute("data-id", id)
     editBtn.setAttribute("data-id", id)
 }
 
-
-$("#deleteMovie").click(function () {
-    let btnID = this.getAttribute("data-id")
-    let posterData = $('img[data-id='+btnID+']')
-    posterData.hide()
-    console.log(btnID)
-    deleteMovie(btnID)
-})
-
-$("#editButton").click(function () {
-    let btnID = this.getAttribute("data-id")
-    let posterData = $('img[data-id='+btnID+']')
-    let posterSrc = posterData[0].currentSrc
-    console.log(posterSrc)
-    let newTitle = $("#editTitle").val()
-    let imdbRating = $("#editRating").val()
-    editMovies({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc})
-    populateMovieModal({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc})
-})
-
-$(".closeBtn").click(function () {
-    let newTitle = $("#editTitle").val("")
-    let imdbRating = $("#editRating").val("")
-    newTitle.attr("placeholder", "Enter New Title")
-    imdbRating.attr("placeholder", "Rate Movie 1-10")
-})
-
-
-
 function openTab(evt, userForm) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(userForm).style.display = "block";
@@ -108,8 +75,52 @@ function openTab(evt, userForm) {
 document.getElementById("defaultOpen").click();
 
 
+
+
 $("#addButton").click(function () {
     const newTitle = $("#addTitle").val()
     const imdbRating = $('#addRating').val()
-    addMovie({Title: newTitle, imdbRating : imdbRating, Poster: 'img/image.png'})
+    const addGenre = $("#addGenre").val()
+    const addYear = $("#addYear").val()
+
+    addMovie({Title: newTitle, imdbRating: imdbRating, Genre: addGenre, Year: addYear, Poster: 'img/image.png'})
 })
+
+
+$("#deleteMovie").click(function () {
+    let btnID = this.getAttribute("data-id")
+    let posterData = $(`img[data-id=${btnID}I]`)
+    posterData.hide()
+    deleteMovie(btnID)
+})
+
+$("#editButton").click(function () {
+    const btnID = this.getAttribute("data-id")
+    const posterData = $(`img[data-id=${btnID}]`)
+    const posterSrc = posterData[0].currentSrc
+    const newTitle = $("#editTitle").val()
+    const imdbRating = $("#editRating").val()
+    const newGenre = $("#editGenre").val()
+    const newYear = $("#editYear").val()
+
+    editMovies({id: btnID, Title: newTitle, Year: newYear, Genre: newGenre, imdbRating: imdbRating, Poster: posterSrc})
+    populateMovieModal({id: btnID, Title: newTitle, imdbRating : imdbRating, Poster : posterSrc, Genre: newGenre, Year: newYear})
+})
+
+$(".closeBtn").click(() => {
+    const newTitle = $("#editTitle").val("")
+    const imdbRating = $("#editRating").val("")
+    const addGenre = $("#editGenre").val("")
+    const addYear = $("#editYear").val("")
+
+    newTitle.attr("placeholder", "Enter New Title")
+    imdbRating.attr("placeholder", "Rate Movie 1-10")
+    addGenre.attr("placeholder", "Enter New Genre")
+    addYear.attr("placeholder", "Enter New Year")
+})
+
+
+
+
+
+
