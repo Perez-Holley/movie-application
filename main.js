@@ -89,7 +89,7 @@ $("#addButton").click(function () {
 
 $("#deleteMovie").click(function () {
     let btnID = this.getAttribute("data-id")
-    let posterData = $(`img[data-id=${btnID}I]`)
+    let posterData = $(`img[data-id=${btnID}]`)
     posterData.hide()
     deleteMovie(btnID)
 })
