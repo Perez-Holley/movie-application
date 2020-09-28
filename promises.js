@@ -1,5 +1,5 @@
 const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
-// const oMDb = `http://www.omdbapi.com/?apikey=${OMDb}&i=${i}`
+// const oMDb = `http://www.omdbapi.com/?apikey=${OMDb}&t=${title}`
 
 
 
@@ -14,11 +14,13 @@ const glitchUrl = 'https://feather-satisfying-sprite.glitch.me/movies'
 
 
 fetch(glitchUrl)
-.then(res => res.json())
-.then(data => {
-    renderPosters(data)
-    console.log(data)
-})
+    .then(res => res.json())
+    .then(data => {
+        renderPosters(data)
+        populateMovieModal(data)
+        $('#loading').hide();
+        console.log(data)
+    })
 
 
 // edit
@@ -37,7 +39,8 @@ const editMovies = movies => fetch(`${glitchUrl}/${movies.id}`, {
 // editMovies({id : 97, Title : "Scarier", Rating : 2})
 
 
-    // delete
+
+// delete
     const deleteMovie = id => fetch(`${glitchUrl}/${id}`, {
         method: 'DELETE',
         headers: {
@@ -50,10 +53,7 @@ const editMovies = movies => fetch(`${glitchUrl}/${movies.id}`, {
         })
         .catch(console.error);
         
-
-//
-//     //create
-//
+//create
     const addMovie = (movie) => fetch(`${glitchUrl}`, {
         method: 'POST',
         headers: {
@@ -62,9 +62,11 @@ const editMovies = movies => fetch(`${glitchUrl}/${movies.id}`, {
         body: JSON.stringify(movie)
     })
         .then(res => res.json())
+        .then()
         .then(data => {
             console.log(`Success: created ${JSON.stringify(data)}`);
             return data.id; // to access the primary key of the newly created entity
+            
         })
         .catch(console.error);
 
