@@ -50,10 +50,10 @@ function populateMovieModal({Title, imdbRating, Year, Genre, id}) {
     } else if (`${id}` > 91) {
         document.querySelector("#more").innerHTML = newMovieInfo
     }
-    editTitle.setAttribute("placeholder", Title)
-    editYear.setAttribute("placeholder", Year)
-    editGenre.setAttribute("placeholder", Genre)
-    editRating.setAttribute("placeholder", imdbRating)
+    editTitle.setAttribute("value", Title)
+    editYear.setAttribute("value", Year)
+    editGenre.setAttribute("value", Genre)
+    editRating.setAttribute("value", imdbRating)
     deleteBtn.setAttribute("data-id", id)
     editBtn.setAttribute("data-id", id)
 }
