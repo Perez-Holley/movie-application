@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--------------LOADING IMAGE---------------->
-<div id="loading"></div>
+<!-- <div id="loading" class="d-block"></div> -->
 
 <!------------- MODAL ---------------->
 <div class="modal" id="modal-1" tabindex="-1" role="dialog">
@@ -30,14 +30,25 @@
                     <div id="edit" class="tabcontent">
                         <div class="form-group">
                             <label for="editTitle" class="required">Title</label>
-                            <input id="editTitle" type="text" name="title" class="form-control"
-                                   placeholder="Add New Title" required="required">
+                            <input id="editTitle" type="text" name="edit-title" class="form-control"
+                                   placeholder="Edit Title" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="editYear" class="required">Year</label>
+                            <input id="editYear" type="text" name="edit-year" class="form-control"
+                                   placeholder="Add New Year" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="editGenre" class="required">Genre</label>
+                            <input id="editGenre" type="text" name="edit-genre" class="form-control"
+                                   placeholder="Add New Genre" required="required">
                         </div>
                         <div class="form-group">
                             <label for="editRating" class="required">Rating</label>
-                            <input id="editRating" type="text" name="rating" class="form-control"
+                            <input id="editRating" type="text" name="edit-rating" class="form-control"
                                    placeholder="Rate Movie 1-10" required="required">
                         </div>
+                        
                         <input id="editButton" class="btn" type="submit" value="Edit Movie">
                     </div>
 
@@ -64,13 +75,7 @@
     <!-- Navbar -->
     <nav class="navbar d-flex p-0 m-0">
         <nav id="navBar" class="navbar d-flex p-0 m-0">
-            <!-- Navbar content (with toggle sidebar button) -->
-            <div class="navbar-content ml-20">
-                <button class="btn btn-action" type="button">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                    <span class="sr-only">Toggle sidebar</span> <!-- sr-only = show only on screen readers -->
-                </button>
-            </div>
+            <!-- Navbar content (with toggle sidebar button) --
             <!-- Navbar brand -->
             <a href="#" class="navbar-brand text-white">
                 Horror Movies
@@ -92,6 +97,16 @@
                             <label for="addTitle" class="required">Title</label>
                             <input id="addTitle" type="text" name="title" class="form-control"
                                    placeholder="Add New Title" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="addYear" class="required">Year</label>
+                            <input id="addYear" type="text" name="year" class="form-control"
+                                   placeholder="Add New Year" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="addGenre" class="required">Genre</label>
+                            <input id="addGenre" type="text" name="genre" class="form-control"
+                                   placeholder="Add New Genre" required="required">
                         </div>
                         <div class="form-group">
                             <label for="addRating" class="required">Rating</label>
